@@ -1,0 +1,20 @@
+FROM ubuntu:latest
+
+# Install SSH client
+RUN apt update
+RUN apt install -y openssh-server
+RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+
+# Create a new user
+RUN useradd -m -s /bin/bash admin
+RUN echo "admin:password" | chpasswd
+
+# Expose default SSH port
+EXPOSE 22
+
+RUN mkdir /var/run/sshd
+RUN chmod 0755 /var/run/sshd
+
+RUN /usr/bin/ssh-keygen -A
+
+ENTRYPOINT /usr/sbin/sshd && tail -f /dev/null
