@@ -3,35 +3,47 @@ services:
     build: 
       context: ./init
       dockerfile: dockerfile.ubuntu
+    networks:
+      - default
     ports:
       - 50000:22
   inventory-a02:
     build: 
       context: ./init
       dockerfile: dockerfile.ubuntu
+    networks:
+      - default
     ports:
       - 50001:22
   inventory-b01:
     build: 
       context: ./init
       dockerfile: dockerfile.rhel
+    networks:
+      - default
     ports:
       - 50002:22
   inventory-b02:
     build: 
       context: ./init
       dockerfile: dockerfile.rhel
+    networks:
+      - default
     ports:
       - 50003:22
   inventory-c01:
     build: 
       context: ./init
       dockerfile: dockerfile.alpine
+    networks:
+      - default
     ports:
       - 50004:22
   inventory-c02:
     build: 
       context: ./init
       dockerfile: dockerfile.alpine
+    networks:
+      - default
     ports:
       - 50005:22

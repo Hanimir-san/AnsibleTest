@@ -2,11 +2,13 @@ FROM alpine:latest
 
 # Install SSH client
 RUN apk update
-RUN apk add openssh openrc --no-cache
+RUN apk add sudo bash python3 openssh openrc --no-cache
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed -i -E 's/#\s+%wheel ALL=\(ALL:ALL\) NOPASSWD: ALL/%wheel ALL=\(ALL:ALL\) NOPASSWD: ALL/' /etc/sudoers
 
 # Create a new user
 RUN adduser -D -h admin -s /bin/bash admin
+RUN addgroup admin wheel
 RUN echo "admin:password" | chpasswd
 
 # Expose default SSH port

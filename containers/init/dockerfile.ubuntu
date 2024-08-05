@@ -7,6 +7,7 @@ RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/s
 
 # Create a new user
 RUN useradd -m -s /bin/bash admin
+RUN usermod -a -G sudo admin
 RUN echo "admin:password" | chpasswd
 
 # Expose default SSH port
