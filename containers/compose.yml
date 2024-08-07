@@ -1,5 +1,5 @@
 services:
-  inventory-a01:
+  ubuntu-01:
     build: 
       context: ./init
       dockerfile: dockerfile.ubuntu
@@ -7,7 +7,7 @@ services:
       - default
     ports:
       - 50000:22
-  inventory-a02:
+  ubuntu-02:
     build: 
       context: ./init
       dockerfile: dockerfile.ubuntu
@@ -15,7 +15,7 @@ services:
       - default
     ports:
       - 50001:22
-  inventory-b01:
+  rhel-01:
     build: 
       context: ./init
       dockerfile: dockerfile.rhel
@@ -23,7 +23,7 @@ services:
       - default
     ports:
       - 50002:22
-  inventory-b02:
+  rhel-02:
     build: 
       context: ./init
       dockerfile: dockerfile.rhel
@@ -31,7 +31,7 @@ services:
       - default
     ports:
       - 50003:22
-  inventory-c01:
+  alpine-01:
     build: 
       context: ./init
       dockerfile: dockerfile.alpine
@@ -39,7 +39,7 @@ services:
       - default
     ports:
       - 50004:22
-  inventory-c02:
+  alpine-02:
     build: 
       context: ./init
       dockerfile: dockerfile.alpine
