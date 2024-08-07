@@ -4,6 +4,13 @@
 set -o nounset
 set -o pipefail
 
+# Check that script is being run with user admin privileges
+if [ $EUID != 0 ];
+then
+    echo "This script must be run with superuser privileges!"
+    exit 1 
+fi
+
 # TODO: Add containers to individual ansible inventory groups
 # TODO: Add containers to user known hosts
 
