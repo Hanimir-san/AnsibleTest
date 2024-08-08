@@ -3,6 +3,7 @@ services:
     build: 
       context: ./init
       dockerfile: dockerfile.ubuntu
+    privileged: true 
     networks:
       - default
     ports:
@@ -11,6 +12,7 @@ services:
     build: 
       context: ./init
       dockerfile: dockerfile.ubuntu
+    privileged: true 
     networks:
       - default
     ports:
@@ -19,6 +21,7 @@ services:
     build: 
       context: ./init
       dockerfile: dockerfile.rhel
+    privileged: true 
     networks:
       - default
     ports:
@@ -27,6 +30,7 @@ services:
     build: 
       context: ./init
       dockerfile: dockerfile.rhel
+    privileged: true 
     networks:
       - default
     ports:
@@ -35,6 +39,7 @@ services:
     build: 
       context: ./init
       dockerfile: dockerfile.alpine
+    privileged: true 
     networks:
       - default
     ports:
@@ -43,6 +48,7 @@ services:
     build: 
       context: ./init
       dockerfile: dockerfile.alpine
+    privileged: true 
     networks:
       - default
     ports:

@@ -2,12 +2,14 @@ FROM redhat/ubi8:latest
 
 # Install SSH client
 RUN dnf update -y
-RUN dnf install -y python3 openssh-server initscripts
+RUN dnf install -y sudo python3 openssh-server initscripts
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed -i -E 's/#\s+%wheel ALL=\(ALL:ALL\) NOPASSWD: ALL/%wheel ALL=\(ALL:ALL\) NOPASSWD: ALL/' /etc/sudoers
 
 # Create a new user
 RUN useradd -m -s /bin/bash admin
 RUN usermod -a -G wheel admin
+RUN echo "root:password" | chpasswd
 RUN echo "admin:password" | chpasswd
 
 # Expose default SSH port

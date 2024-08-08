@@ -2,12 +2,14 @@ FROM ubuntu:latest
 
 # Install SSH client
 RUN apt update
-RUN apt install -y openssh-server
+RUN apt install -y sudo openssh-server
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed -i -E 's/#\s+%sudo ALL=\(ALL:ALL\) ALL/%sudo ALL=\(ALL:ALL\) NOPASSWD: ALL/' /etc/sudoers
 
 # Create a new user
 RUN useradd -m -s /bin/bash admin
 RUN usermod -a -G sudo admin
+RUN echo "root:password" | chpasswd
 RUN echo "admin:password" | chpasswd
 
 # Expose default SSH port
